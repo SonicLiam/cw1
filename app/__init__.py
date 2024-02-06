@@ -1,7 +1,6 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
-from app.routes import api_bp
 
 db = SQLAlchemy()
 ma = Marshmallow()
@@ -22,6 +21,7 @@ def create_app():
         from app.models import models
         db.create_all()
 
+    from app.routes import api_bp
     app.register_blueprint(api_bp, url_prefix='/api')
 
     return app
