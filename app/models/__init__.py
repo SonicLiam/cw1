@@ -1,1 +1,1 @@
-from .models import DistanceTravelledToWork, MethodOfTravelToWork, EconomicActivity, HoursWorked, NSSEC
+from .models import DistanceTravelledToWork, MethodOfTravelToWork, EconomicActivity, HoursWorked, NSSEC, Occupation

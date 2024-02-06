@@ -1,5 +1,5 @@
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
-from app.models import DistanceTravelledToWork, MethodOfTravelToWork, EconomicActivity, HoursWorked, NSSEC
+from app.models import *
 
 
 class DistanceTravelledToWorkSchema(SQLAlchemyAutoSchema):
@@ -29,4 +29,10 @@ class HoursWorkedSchema(SQLAlchemyAutoSchema):
 class NSSECSchema(SQLAlchemyAutoSchema):
     class Meta:
         model = NSSEC
+        load_instance = True
+
+
+class OccupationSchema(SQLAlchemyAutoSchema):
+    class Meta:
+        model = Occupation
         load_instance = True
