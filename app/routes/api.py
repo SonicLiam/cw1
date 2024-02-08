@@ -1,12 +1,16 @@
 from flask import Blueprint, request, jsonify
+from marshmallow import ValidationError
 from app import db
 from app.schemas.schemas import *
+
 
 api_bp = Blueprint('api', __name__)
 
 # Initialize schema instances
-distance_travelled_to_work_schema = DistanceTravelledToWorkSchema(session=db.session)
-method_of_travel_to_work_schema = MethodOfTravelToWorkSchema(session=db.session)
+distance_travelled_to_work_schema = DistanceTravelledToWorkSchema(
+    session=db.session)
+method_of_travel_to_work_schema = MethodOfTravelToWorkSchema(
+    session=db.session)
 economic_activity_schema = EconomicActivitySchema(session=db.session)
 hours_worked_schema = HoursWorkedSchema(session=db.session)
 nssec_schema = NSSECSchema(session=db.session)
@@ -22,8 +26,13 @@ def create_endpoints(blueprint, url, endpoint_suffix, model, schema):
 
     @blueprint.route(url, methods=['GET'])
     def get_items():
-        year = request.args.get('year', type=int)
-        if year:
+        year_str = request.args.get('year')
+        if year_str:
+            try:
+                year = int(year_str)
+            except ValueError:
+                # Return a 400 Bad Request if the year is not a valid integer
+                return jsonify({'year': ['Not a valid integer']}), 400
             items = model.query.filter_by(year=year).all()
         else:
             items = model.query.all()
@@ -31,20 +40,26 @@ def create_endpoints(blueprint, url, endpoint_suffix, model, schema):
 
     @blueprint.route(url, methods=['POST'])
     def create_item():
-        data = request.get_json()
-        item = schema.load(data)
-        db.session.add(item)
-        db.session.commit()
-        return jsonify(schema.dump(item)), 201
+        try:
+            data = request.get_json()
+            item = schema.load(data)
+            db.session.add(item)
+            db.session.commit()
+            return jsonify(schema.dump(item)), 201
+        except ValidationError as err:
+            return jsonify(err.messages), 400
 
     # PUT
     @blueprint.route(f'{url}/<int:id>', methods=['PUT'])
     def update_item(id):
         item = model.query.get_or_404(id)
         data = request.get_json()
-        schema.load(data, instance=item)
-        db.session.commit()
-        return jsonify(schema.dump(item)), 200
+        try:
+            item = schema.load(data, instance=item, partial=True)
+            db.session.commit()
+            return jsonify(schema.dump(item)), 200
+        except ValidationError as err:
+            return jsonify(err.messages), 400
 
     # DELETE
     @blueprint.route(f'{url}/<int:id>', methods=['DELETE'])
@@ -62,11 +77,14 @@ def create_endpoints(blueprint, url, endpoint_suffix, model, schema):
     delete_item.__name__ = f'delete_{endpoint_suffix}'
 
     # Register the routes
-    blueprint.add_url_rule(f'{url}/<int:id>', view_func=get_item, methods=['GET'])
+    blueprint.add_url_rule(
+        f'{url}/<int:id>', view_func=get_item, methods=['GET'])
     blueprint.add_url_rule(url, view_func=get_items, methods=['GET'])
     blueprint.add_url_rule(url, view_func=create_item, methods=['POST'])
-    blueprint.add_url_rule(f'{url}/<int:id>', view_func=update_item, methods=['PUT'])
-    blueprint.add_url_rule(f'{url}/<int:id>', view_func=delete_item, methods=['DELETE'])
+    blueprint.add_url_rule(
+        f'{url}/<int:id>', view_func=update_item, methods=['PUT'])
+    blueprint.add_url_rule(
+        f'{url}/<int:id>', view_func=delete_item, methods=['DELETE'])
 
 
 # Register API routes
@@ -74,7 +92,10 @@ create_endpoints(api_bp, '/distance_travelled_to_work', 'distance_travelled_to_w
                  distance_travelled_to_work_schema)
 create_endpoints(api_bp, '/method_of_travel_to_work', 'method_of_travel_to_work', MethodOfTravelToWork,
                  method_of_travel_to_work_schema)
-create_endpoints(api_bp, '/economic_activity', 'economic_activity', EconomicActivity, economic_activity_schema)
-create_endpoints(api_bp, '/hours_worked', 'hours_worked', HoursWorked, hours_worked_schema)
+create_endpoints(api_bp, '/economic_activity', 'economic_activity',
+                 EconomicActivity, economic_activity_schema)
+create_endpoints(api_bp, '/hours_worked', 'hours_worked',
+                 HoursWorked, hours_worked_schema)
 create_endpoints(api_bp, '/nssec', 'nssec', NSSEC, nssec_schema)
-create_endpoints(api_bp, '/occupation', 'occupation', Occupation, occupation_schema)
+create_endpoints(api_bp, '/occupation', 'occupation',
+                 Occupation, occupation_schema)

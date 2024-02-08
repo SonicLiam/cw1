@@ -1,3 +1,7 @@
+"""
+Database models for the application, using SQLAlchemy ORM.
+All models inherit from BaseInfo, which contains common columns.
+"""
 from app import db
 
 
@@ -42,10 +46,14 @@ class EconomicActivity(BaseInfo):
     economically_active_full_time_employee = db.Column(db.Integer)
     economically_active_part_time_employee = db.Column(db.Integer)
     economically_active_full_time_student = db.Column(db.Integer)
-    economically_active_self_employed_with_employees_full_time = db.Column(db.Integer)
-    economically_active_self_employed_with_employees_part_time = db.Column(db.Integer)
-    economically_active_self_employed_without_employees_full_time = db.Column(db.Integer)
-    economically_active_self_employed_without_employees_part_time = db.Column(db.Integer)
+    economically_active_self_employed_with_employees_full_time = db.Column(
+        db.Integer)
+    economically_active_self_employed_with_employees_part_time = db.Column(
+        db.Integer)
+    economically_active_self_employed_without_employees_full_time = db.Column(
+        db.Integer)
+    economically_active_self_employed_without_employees_part_time = db.Column(
+        db.Integer)
     economically_active_unemployed = db.Column(db.Integer)
     economically_inactive_long_term_sick_or_disabled = db.Column(db.Integer)
     economically_inactive_looking_after_home_or_family = db.Column(db.Integer)
