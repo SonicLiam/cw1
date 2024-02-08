@@ -1,3 +1,5 @@
 .coverage
 app/coverage
 htmlcov/
+.idea
+.venv
