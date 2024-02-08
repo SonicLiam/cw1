@@ -1,4 +1,4 @@
-local authority code,local authority name,LSOA code,All usual residents aged 16+ in employment,Less than 2km,2km to less than 5km,5km to less than 10km,10km to less than 20km,20km to less than 30km,30km to less than 40km,40km to less than 60km,60km and over,Works mainly from home,Other
+local authority code,local authority name,LSOA code,residents,Distance: Less than 2km,Distance: 2km to less than 5km,Distance: 5km to less than 10km,Distance: 10km to less than 20km,Distance: 20km to less than 30km,Distance: 30km to less than 40km,Distance: 40km to less than 60km,Distance: 60km and over,Work mainly at or from home,Other
 E09000001,City of London,E01000001,863,84,53,34,11,1,2,3,3,639,33
 E09000001,City of London,E01000002,882,78,40,21,6,2,4,3,2,678,48
 E09000001,City of London,E01000003,1006,145,80,60,22,3,0,0,7,622,67

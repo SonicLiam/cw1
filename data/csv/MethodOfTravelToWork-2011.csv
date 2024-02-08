@@ -1,4 +1,4 @@
-local authority code,local authority name,LSOA code,All usual residents aged 16-74 in work,Work mainly at or from home,Underground; metro; light rail; tram,Train,Bus; minibus or coach,Taxi,Motorcycle; scooter or moped,Driving a car or van,Passenger in a car or van,Bicycle,On foot,Other method of travel to work
+local authority code,local authority name,LSOA code,residents,Work mainly at or from home,Underground; metro; light rail; tram,Train,Bus; minibus or coach,Taxi,Motorcycle; scooter or moped,Driving a car or van,Passenger in a car or van,Bicycle,On foot,Other method of travel to work
 E09000001,City of London,E01000001,926,113,190,37,33,10,5,28,4,47,445,14
 E09000001,City of London,E01000002,910,98,201,42,22,14,7,26,1,57,428,14
 E09000001,City of London,E01000003,764,57,156,40,70,2,4,30,1,70,325,9

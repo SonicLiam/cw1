@@ -26,8 +26,8 @@ def create_base_info(**kwargs):
         'year': kwargs.get('year', fake.random_int(min=1, max=2024)),
         'local_authority_code': kwargs.get('local_authority_code', fake.bothify(text='????##')),
         'local_authority_name': kwargs.get('local_authority_name', fake.city()),
-        'LSOA_code': kwargs.get('LSOA_code', fake.bothify(text='????##')),
-        'residents_aged_16_74_in_employment': kwargs.get('residents_aged_16_74_in_employment',
+        'lsoa_code': kwargs.get('LSOA_code', fake.bothify(text='????##')),
+        'residents': kwargs.get('residents_aged_16_74_in_employment',
                                                          fake.random_int(min=0, max=10000))
     }
     return data
@@ -81,31 +81,33 @@ def create_economic_activity(**kwargs):
     baseInfo = create_base_info(**kwargs)
     data = {
         **baseInfo,
-        'economically_active_full_time_employee': kwargs.get('economically_active_full_time_employee',
+        'economically_active_employee_full_time': kwargs.get('economically_active_employee_full_time',
                                                              fake.random_int(min=0, max=1000)),
-        'economically_active_part_time_employee': kwargs.get('economically_active_part_time_employee',
-                                                             fake.random_int(min=0, max=1000)),
+        'economically_active_employee_part_time': kwargs.get('economically_active_employee_part_time',
+                                                                fake.random_int(min=0, max=1000)),
         'economically_active_full_time_student': kwargs.get('economically_active_full_time_student',
                                                             fake.random_int(min=0, max=1000)),
         'economically_active_self_employed_with_employees_full_time': kwargs.get(
-            'economically_active_self_employed_with_employees_full_time', fake.random_int(min=0, max=1000)),
-        'economically_active_self_employed_with_employees_part_time': kwargs.get(
-            'economically_active_self_employed_with_employees_part_time', fake.random_int(min=0, max=1000)),
-        'economically_active_self_employed_without_employees_full_time': kwargs.get(
-            'economically_active_self_employed_without_employees_full_time', fake.random_int(min=0, max=1000)),
-        'economically_active_self_employed_without_employees_part_time': kwargs.get(
-            'economically_active_self_employed_without_employees_part_time', fake.random_int(min=0, max=1000)),
-        'economically_active_unemployed': kwargs.get('economically_active_unemployed',
-                                                     fake.random_int(min=0, max=1000)),
-        'economically_inactive_long_term_sick_or_disabled': kwargs.get(
-            'economically_inactive_long_term_sick_or_disabled',
+            'economically_active_self_employed_with_employees_full_time',
             fake.random_int(min=0, max=1000)),
-        'economically_inactive_looking_after_home_or_family': kwargs.get(
-            'economically_inactive_looking_after_home_or_family', fake.random_int(min=0, max=1000)),
+        'economically_active_self_employed_with_employees_part_time': kwargs.get(
+            'economically_active_self_employed_with_employees_part_time',
+            fake.random_int(min=0, max=1000)),
+        'economically_active_self_employed_without_employees_full_time': kwargs.get(
+            'economically_active_self_employed_without_employees_full_time',
+            fake.random_int(min=0, max=1000)),
+        'economically_active_self_employed_without_employees_part_time': kwargs.get(
+            'economically_active_self_employed_without_employees_part_time',
+            fake.random_int(min=0, max=1000)),
+        'economically_active_unemployed': kwargs.get('economically_active_unemployed', fake.random_int(min=0, max=1000)),
+        'economically_inactive_long_term_sick_or_disabled': kwargs.get('economically_inactive_long_term_sick_or_disabled',
+                                                                      fake.random_int(min=0, max=1000)),
+        'economically_inactive_looking_after_home_or_family': kwargs.get('economically_inactive_looking_after_home_or_family',
+                                                                        fake.random_int(min=0, max=1000)),
         'economically_inactive_other': kwargs.get('economically_inactive_other', fake.random_int(min=0, max=1000)),
         'economically_inactive_retired': kwargs.get('economically_inactive_retired', fake.random_int(min=0, max=1000)),
         'economically_inactive_full_time_students': kwargs.get('economically_inactive_full_time_students',
-                                                               fake.random_int(min=0, max=1000))
+                                                              fake.random_int(min=0, max=1000))
     }
     return data
 

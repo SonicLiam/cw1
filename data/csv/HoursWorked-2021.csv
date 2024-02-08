@@ -1,4 +1,4 @@
-local authority code,local authority name,LSOA code,All usual residents aged 16+  in employment,15 hours or less,16 to 30 hours,31 to 48 hours,49 or more hours
+local authority code,local authority name,LSOA code,residents,hours worked 15 or less,hours worked 16 to 30,hours worked 31 to 48,hours worked 49 or more
 E09000001,City of London,E01000001,864,85,80,435,264
 E09000001,City of London,E01000002,880,52,79,431,318
 E09000001,City of London,E01000003,1000,80,130,544,246

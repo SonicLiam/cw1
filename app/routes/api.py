@@ -1,7 +1,14 @@
+"""
+This module contains the API routes for the application.
+"""
 from flask import Blueprint, request, jsonify
 from marshmallow import ValidationError
+
 from app import db
-from app.schemas.schemas import *
+from app.models import (DistanceTravelledToWork, MethodOfTravelToWork, EconomicActivity,
+                        HoursWorked, NSSEC, Occupation)
+from app.schemas.schemas import (DistanceTravelledToWorkSchema, MethodOfTravelToWorkSchema,
+                                 EconomicActivitySchema, HoursWorkedSchema, NSSECSchema, OccupationSchema)
 
 
 api_bp = Blueprint('api', __name__)

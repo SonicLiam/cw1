@@ -6,16 +6,22 @@ from app import db
 
 
 class BaseInfo(db.Model):
+    """
+    Base model for all the models in the application.
+    """
     __abstract__ = True
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer, nullable=False)
     local_authority_code = db.Column(db.String(255), nullable=False)
     local_authority_name = db.Column(db.String(255), nullable=False)
-    LSOA_code = db.Column(db.String(255), nullable=False)
-    residents_aged_16_74_in_employment = db.Column(db.Integer)
+    lsoa_code = db.Column(db.String(255), nullable=False)
+    residents = db.Column(db.Integer)
 
 
 class DistanceTravelledToWork(BaseInfo):
+    """
+    Model for the distance travelled to work.
+    """
     distance_less_than_2km = db.Column(db.Integer)
     distance_2km_to_less_than_5km = db.Column(db.Integer)
     distance_5km_to_less_than_10km = db.Column(db.Integer)
@@ -29,6 +35,9 @@ class DistanceTravelledToWork(BaseInfo):
 
 
 class MethodOfTravelToWork(BaseInfo):
+    """
+    Model for the method of travel to work.
+    """
     work_mainly_at_or_from_home = db.Column(db.Integer)
     underground_metro_light_rail_tram = db.Column(db.Integer)
     train = db.Column(db.Integer)
@@ -43,8 +52,11 @@ class MethodOfTravelToWork(BaseInfo):
 
 
 class EconomicActivity(BaseInfo):
-    economically_active_full_time_employee = db.Column(db.Integer)
-    economically_active_part_time_employee = db.Column(db.Integer)
+    """
+    Model for the economic activity.
+    """
+    economically_active_employee_full_time = db.Column(db.Integer)
+    economically_active_employee_part_time = db.Column(db.Integer)
     economically_active_full_time_student = db.Column(db.Integer)
     economically_active_self_employed_with_employees_full_time = db.Column(
         db.Integer)
@@ -63,6 +75,9 @@ class EconomicActivity(BaseInfo):
 
 
 class HoursWorked(BaseInfo):
+    """
+    Model for the hours worked.
+    """
     hours_worked_15_or_less = db.Column(db.Integer)
     hours_worked_16_to_30 = db.Column(db.Integer)
     hours_worked_31_to_48 = db.Column(db.Integer)
@@ -70,6 +85,9 @@ class HoursWorked(BaseInfo):
 
 
 class NSSEC(BaseInfo):
+    """
+    Model for the National Statistics Socio-economic Classification (NSSEC).
+    """
     higher_managerial_admin_and_professional = db.Column(db.Integer)
     lower_managerial_admin_and_professional = db.Column(db.Integer)
     intermediate = db.Column(db.Integer)
@@ -82,6 +100,9 @@ class NSSEC(BaseInfo):
 
 
 class Occupation(BaseInfo):
+    """
+    Model for the occupation.
+    """
     managers_directors_and_senior_officials = db.Column(db.Integer)
     professional_occupations = db.Column(db.Integer)
     associate_professional_and_technical_occupations = db.Column(db.Integer)

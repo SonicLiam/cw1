@@ -1,4 +1,4 @@
-local authority code,local authority name,LSOA code,All usual residents aged 16-74 in employment,"1. Managers, directors and senior officials",2. Professional occupations,3. Associate professional and technical occupations,4. Adminis-trative and secretarial occupations,5. Skilled trades occupations,"6. Caring, leisure and other service occupations",7. Sales and customer service occupations,"8. Process, plant and machine operatives",9. Elementary occupations
+local authority code,local authority name,LSOA code,residents,Managers directors and senior officials,Professional occupations,Associate professional and technical occupations,Administrative and secretarial occupations,Skilled trades occupations,Caring leisure and other service occupations,Sales and customer service occupations,Process plant and machine operatives,Elementary occupations
 E09000001,City of London,E01000001,926,167,446,208,53,15,17,6,2,12
 E09000001,City of London,E01000002,910,171,417,207,61,12,8,18,3,13
 E09000001,City of London,E01000003,764,89,285,183,67,19,36,29,11,45

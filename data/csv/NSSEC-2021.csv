@@ -1,4 +1,4 @@
-local authority code,local authority name,LSOA code,All usual residents aged 16+,Higher managerial admin and professional ,Lower managerial admin and professional ,Intermediate ,"Small employers, own account workers",Lower supervisory and technical ,Semi routine,Routine ,Never worked and long term unemployed,Full time students
+local authority code,local authority name,LSOA code,residents,Higher managerial admin and professional,Lower managerial admin and professional,Intermediate,Small employers own account workers,Lower supervisory and technical,Semi routine,Routine ,Never worked and long term unemployed,Full time students
 E09000001,City of London,E01000001,1356,620,367,72,118,11,31,16,37,84
 E09000001,City of London,E01000002,1302,631,358,55,95,6,17,10,42,88
 E09000001,City of London,E01000003,1500,503,426,131,128,33,70,70,72,67
