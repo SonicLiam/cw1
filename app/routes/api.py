@@ -5,12 +5,12 @@ from app.schemas.schemas import *
 api_bp = Blueprint('api', __name__)
 
 # Initialize schema instances
-distance_travelled_to_work_schema = DistanceTravelledToWorkSchema()
-method_of_travel_to_work_schema = MethodOfTravelToWorkSchema()
-economic_activity_schema = EconomicActivitySchema()
-hours_worked_schema = HoursWorkedSchema()
-nssec_schema = NSSECSchema()
-occupation_schema = OccupationSchema()
+distance_travelled_to_work_schema = DistanceTravelledToWorkSchema(session=db.session)
+method_of_travel_to_work_schema = MethodOfTravelToWorkSchema(session=db.session)
+economic_activity_schema = EconomicActivitySchema(session=db.session)
+hours_worked_schema = HoursWorkedSchema(session=db.session)
+nssec_schema = NSSECSchema(session=db.session)
+occupation_schema = OccupationSchema(session=db.session)
 
 
 # Common function to create API routes
@@ -35,7 +35,7 @@ def create_endpoints(blueprint, url, endpoint_suffix, model, schema):
         item = schema.load(data)
         db.session.add(item)
         db.session.commit()
-        return schema.jsonify(item), 201
+        return jsonify(schema.dump(item)), 201
 
     # PUT
     @blueprint.route(f'{url}/<int:id>', methods=['PUT'])
@@ -44,7 +44,7 @@ def create_endpoints(blueprint, url, endpoint_suffix, model, schema):
         data = request.get_json()
         schema.load(data, instance=item)
         db.session.commit()
-        return schema.jsonify(item), 200
+        return jsonify(schema.dump(item)), 200
 
     # DELETE
     @blueprint.route(f'{url}/<int:id>', methods=['DELETE'])

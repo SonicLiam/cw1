@@ -1,16 +1,27 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
+import os
 
 db = SQLAlchemy()
 ma = Marshmallow()
 
 
-def create_app():
+class Config:
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///data.db'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    TESTING = False
+
+
+class TestingConfig(Config):
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///:memory:'
+    TESTING = True
+
+
+def create_app(config_class=Config):
     app = Flask(__name__)
 
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.db'
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+    app.config.from_object(config_class)
 
     db.init_app(app)
 
